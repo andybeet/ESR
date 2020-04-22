@@ -1,0 +1,12 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+
+# folders
+ESR pages
+
+# files
+*.pdf
+*.txt

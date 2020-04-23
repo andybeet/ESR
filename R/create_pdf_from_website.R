@@ -20,14 +20,15 @@ siteurl <- "//net.nefsc.noaa.gov/www/ecosys/ecosystem-status-report/"
 get_website_content(siteurl,"index.html",filenameOut="ecosys-website.txt")
 
 # converts the txt file to to an md file
-figs <- make_md(filename="ecosys-website.txt",filenameOut = "ESR_2014.md")
+
+figs <- make_md(filename="ecosys-website.txt",filenameOut = "ESR_2015.md")
 
 # check to make sure all figures are downloaded
 get_figs(siteurl,figs)
 
 
 # check for validUTf-8 encoding
-check_valid_UTF8("ESR_2014.md")
+check_valid_UTF8("ESR_2015.md")
 
 # use virtual studio code to convert to pdf
 

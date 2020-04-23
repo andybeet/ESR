@@ -64,7 +64,7 @@ make_md <- function(siteurl,filename,filenameOut) {
       if (!is.null(figList)){
         figs <- figList$figs
         # write anchor content      
-        write(paste0("![",figList$figText,"](",figList$fileUrl,")",figList$figCaption),here::here(filenameOut),append=T)
+        write(paste0("![",figList$figCaption,"](",figList$fileUrl," \"",figList$figCaption,"\") ",figList$figCaption),here::here(filenameOut),append=T)
         write("",here::here(filenameOut),append=T)
       }
       
@@ -96,7 +96,7 @@ make_md <- function(siteurl,filename,filenameOut) {
       if (!is.null(figList)) {
         figs <- figList$figs
         # write anchor content      
-        write(paste0("![",figList$figText,"](",figList$fileUrl,")",figList$figCaption),here::here(filenameOut),append=T)
+        write(paste0("![",figList$figCaption,"](",figList$fileUrl," \"",figList$figCaption,"\")",figList$figCaption),here::here(filenameOut),append=T)
         write("",here::here(filenameOut),append=T)
       }
       next

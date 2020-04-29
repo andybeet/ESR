@@ -15,6 +15,7 @@ make_md <- function(siteurl,filename,filenameOut) {
   #fileContent <- gsub("&#8600;","\\$\\\\searrow\\$",fileContent)
   #fileContent <- gsub("&harr;","\\$\\\\leftrightarrow\\$",fileContent)
   
+  make_md_header(filenameOut)
   # look for <h tags format with hashes
   iline <- 0
   figs <- NULL

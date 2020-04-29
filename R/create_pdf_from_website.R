@@ -11,6 +11,7 @@
 
 source("R/get_website_content.R")
 source("R/make_md.R")
+source("R/make_md_header.R")
 source("R/check_valid_UTF8.R")
 source("R/get_anchor_info.R")
 
@@ -26,9 +27,11 @@ figs <- make_md(filename="ecosys-website.txt",filenameOut = "ESR_2015.md")
 # check to make sure all figures are downloaded
 get_figs(siteurl,figs)
 
-
 # check for validUTf-8 encoding
 check_valid_UTF8("ESR_2015.md")
+
+
+
 
 # use virtual studio code to convert to pdf
 

@@ -38,7 +38,14 @@ make_md <- function(siteurl,filename,filenameOut) {
       split2 <- unlist(strsplit(aline,htag))[2]
       split3 <- unlist(strsplit(split2,">"))[2]
       headerText <- unlist(strsplit(split3,"<"))[1]
+      # removes all period in title then add a period after every number
+      newH <- stringr::str_replace_all(headerText,"\\."," ")
+      headerText <- stringr::str_replace_all(newH,"([0-9]+)","\\1\\.")
+      dotsinHeader <- stringr::str_count(headerText,"\\.")
+       if (dotsinHeader > 0)
+        headerSize <- dotsinHeader
       header <- paste(paste0(rep("#",headerSize),collapse = "") ,headerText)
+      print(header)
       write(header,here::here(filenameOut),append=T)
       next
     }
@@ -49,7 +56,7 @@ make_md <- function(siteurl,filename,filenameOut) {
       split1 <- unlist(strsplit(aline,">"))[2]
       headerText <- unlist(strsplit(split1,"<"))[1]
       nPeriods <- stringr::str_count(headerText,"\\.")
-      nPeriods <- max(2,nPeriods)
+      nPeriods <- max(1,nPeriods)
       header <- paste(paste0(rep("#",nPeriods),collapse = "") ,headerText)
       print(header)
       write(header,here::here(filenameOut),append=T)

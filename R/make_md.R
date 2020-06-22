@@ -14,8 +14,8 @@ make_md <- function(siteurl,filename,filenameOut) {
   #fileContent <- gsub("&#8599;","\\$\\\\nearrow\\$",fileContent)
   #fileContent <- gsub("&#8600;","\\$\\\\searrow\\$",fileContent)
   #fileContent <- gsub("&harr;","\\$\\\\leftrightarrow\\$",fileContent)
-  
-  make_md_header(filenameOut)
+  figProperties <- list()
+  #make_md_header(filenameOut)
   # look for <h tags format with hashes
   iline <- 0
   figs <- NULL
@@ -42,8 +42,18 @@ make_md <- function(siteurl,filename,filenameOut) {
       newH <- stringr::str_replace_all(headerText,"\\."," ")
       headerText <- stringr::str_replace_all(newH,"([0-9]+)","\\1\\.")
       dotsinHeader <- stringr::str_count(headerText,"\\.")
-       if (dotsinHeader > 0)
+      if (dotsinHeader > 0) {
         headerSize <- dotsinHeader
+      }
+      if (iline<=104) { # before chapter numbering
+        headerSize <- 2
+      }
+      if (iline ==1) { # before chapter numbering
+        headerSize <- 1
+      }
+      if (headerText == "Coastal Condition Reports") # ignore. A HACK
+        next
+
       header <- paste(paste0(rep("#",headerSize),collapse = "") ,headerText)
       print(header)
       write(header,here::here(filenameOut),append=T)
@@ -68,11 +78,11 @@ make_md <- function(siteurl,filename,filenameOut) {
     # We just want the anchor
     if (grepl("<div class=\"figure\"",aline)){
       figList <- get_anchor_info(aline,figs)
-      
       if (!is.null(figList)){
         figs <- figList$figs
         # write anchor content      
-        write(paste0("![",figList$figCaption,"](",figList$fileUrl," \"",figList$figCaption,"\") ",figList$figCaption),here::here(filenameOut),append=T)
+#        write(paste0("![",figList$figCaption,"](",figList$fileUrl," \"",figList$figCaption,"\") ",figList$figCaption),here::here(filenameOut),append=T)
+        write(paste0("![",figList$figCaption,"](",figList$fileUrl," \"",figList$figCaption,"\") "),here::here(filenameOut),append=T)
         write("",here::here(filenameOut),append=T)
       }
       
@@ -94,7 +104,7 @@ make_md <- function(siteurl,filename,filenameOut) {
       # Check to see if it has been found before. Match all anchors
       figList <- get_anchor_info(aline,figs)
       
-      # remove all anchor reference. Revoves hyperlinks in outputted md
+      # remove all anchor reference. Revoves hyperlinks in output md
       aline <- stringr::str_remove_all(aline, "</?a[^>]*>")
 
       # write paragraph content then figure
@@ -103,8 +113,11 @@ make_md <- function(siteurl,filename,filenameOut) {
       
       if (!is.null(figList)) {
         figs <- figList$figs
-        # write anchor content      
-        write(paste0("![",figList$figCaption,"](",figList$fileUrl," \"",figList$figCaption,"\")",figList$figCaption),here::here(filenameOut),append=T)
+        # write anchor content
+        # use the following line for a nice markdown doc.
+        # write(paste0("![",figList$figCaption,"](",figList$fileUrl," \"",figList$figCaption,"\")",figList$figCaption),here::here(filenameOut),append=T)
+        # use this to get to a pdf
+        write(paste0("![",figList$figCaption,"](",figList$fileUrl," \"",figList$figCaption,"\")"),here::here(filenameOut),append=T)
         write("",here::here(filenameOut),append=T)
       }
       next

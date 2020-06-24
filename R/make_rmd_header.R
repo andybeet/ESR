@@ -13,7 +13,7 @@ make_rmd_header <- function(filenameOut) {
   write("title: \"Ecosystem Status Report (2015) for the Northeast Large Marine Ecosystem\"",here::here(filenameOut),append=T)
   write("output: ",here::here(filenameOut),append=T)
   write("  word_document: ",here::here(filenameOut),append=T)
-  write("    reference_docx: ESR_temp.docx",here::here(filenameOut),append=T)
+  write("    reference_docx: ESR_template.docx",here::here(filenameOut),append=T)
   write("---",here::here(filenameOut),append=T)
   write("",here::here(filenameOut),append=T)    
 }

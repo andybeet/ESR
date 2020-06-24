@@ -78,12 +78,16 @@ make_md <- function(siteurl,filename,filenameOut) {
     # We just want the anchor
     if (grepl("<div class=\"figure\"",aline)){
       figList <- get_anchor_info(aline,figs)
-      if (!is.null(figList)){
+      newFigs <- figList$newFigs
+      if (!is.null(newFigs)){
         figs <- figList$figs
+        for (ifig in 1:length(newFigs$fileUrl)) {
         # write anchor content      
 #        write(paste0("![",figList$figCaption,"](",figList$fileUrl," \"",figList$figCaption,"\") ",figList$figCaption),here::here(filenameOut),append=T)
-        write(paste0("![",figList$figCaption,"](",figList$fileUrl," \"",figList$figCaption,"\") "),here::here(filenameOut),append=T)
+        write(paste0("![",newFigs$figCaption[ifig],"](",newFigs$fileUrl[ifig]," \"",newFigs$figCaption[ifig],"\") "),here::here(filenameOut),append=T)
         write("",here::here(filenameOut),append=T)
+        
+        }
       }
       
       next
@@ -103,6 +107,7 @@ make_md <- function(siteurl,filename,filenameOut) {
       # within each paragraph there are links to figures. Get the title and the url.
       # Check to see if it has been found before. Match all anchors
       figList <- get_anchor_info(aline,figs)
+      newFigs <- figList$newFigs
       
       # remove all anchor reference. Revoves hyperlinks in output md
       aline <- stringr::str_remove_all(aline, "</?a[^>]*>")
@@ -111,15 +116,17 @@ make_md <- function(siteurl,filename,filenameOut) {
       write(aline,here::here(filenameOut),append=T)
       write("",here::here(filenameOut),append=T)
       
-      if (!is.null(figList)) {
+      if (!is.null(newFigs)){
         figs <- figList$figs
-        # write anchor content
-        # use the following line for a nice markdown doc.
-        # write(paste0("![",figList$figCaption,"](",figList$fileUrl," \"",figList$figCaption,"\")",figList$figCaption),here::here(filenameOut),append=T)
-        # use this to get to a pdf
-        write(paste0("![",figList$figCaption,"](",figList$fileUrl," \"",figList$figCaption,"\")"),here::here(filenameOut),append=T)
-        write("",here::here(filenameOut),append=T)
+        for (ifig in 1:length(newFigs$fileUrl)) {
+          # write anchor content      
+          #        write(paste0("![",figList$figCaption,"](",figList$fileUrl," \"",figList$figCaption,"\") ",figList$figCaption),here::here(filenameOut),append=T)
+          write(paste0("![",newFigs$figCaption[ifig],"](",newFigs$fileUrl[ifig]," \"",newFigs$figCaption[ifig],"\") "),here::here(filenameOut),append=T)
+          write("",here::here(filenameOut),append=T)
+          
+        }
       }
+            
       next
     }
 

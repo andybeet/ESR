@@ -21,6 +21,7 @@ get_anchor_info <- function(aline,figs) {
   if (nrow(hrefs) == 0) return() # no anchors found
   if (ncol(hrefs) < 3) return() # not a real anchor
 
+  newFigs <- list()
   for (imatch in 1:nrow(hrefs)) {
     titleText <- hrefs[imatch,1]
     fileUrl <- hrefs[imatch,2]
@@ -39,9 +40,17 @@ get_anchor_info <- function(aline,figs) {
       # write("",here::here(filenameOut),append=T)
       
       
+      newFigs$fileUrl[imatch] <- fileUrl 
+      newFigs$figCaption[imatch] <- title
+      newFigs$figText[imatch] <- figText 
+      
       figs <- c(figs,fileUrl)
     }
   }
-  return(list(figs=figs,fileUrl=fileUrl,figCaption=title,figText=figText))
+  
+
+  return(list(figs=figs,newFigs=newFigs))
+  
+  #return(list(figs=figs,fileUrl=fileUrl,figCaption=title,figText=figText))
   
 }

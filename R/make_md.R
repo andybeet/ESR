@@ -83,9 +83,13 @@ make_md <- function(siteurl,filename,filenameOut) {
         figs <- figList$figs
         for (ifig in 1:length(newFigs$fileUrl)) {
         # write anchor content      
-#        write(paste0("![",figList$figCaption,"](",figList$fileUrl," \"",figList$figCaption,"\") ",figList$figCaption),here::here(filenameOut),append=T)
         write(paste0("![",newFigs$figCaption[ifig],"](",newFigs$fileUrl[ifig]," \"",newFigs$figCaption[ifig],"\") "),here::here(filenameOut),append=T)
         write("",here::here(filenameOut),append=T)
+
+        write(newFigs$figCaption[ifig],here::here(filenameOut),append=T)
+        
+        write("",here::here(filenameOut),append=T)
+        
         
         }
       }
@@ -120,8 +124,12 @@ make_md <- function(siteurl,filename,filenameOut) {
         figs <- figList$figs
         for (ifig in 1:length(newFigs$fileUrl)) {
           # write anchor content      
-          #        write(paste0("![",figList$figCaption,"](",figList$fileUrl," \"",figList$figCaption,"\") ",figList$figCaption),here::here(filenameOut),append=T)
           write(paste0("![",newFigs$figCaption[ifig],"](",newFigs$fileUrl[ifig]," \"",newFigs$figCaption[ifig],"\") "),here::here(filenameOut),append=T)
+          
+          write("",here::here(filenameOut),append=T)
+          
+          write(newFigs$figCaption[ifig],here::here(filenameOut),append=T)
+          
           write("",here::here(filenameOut),append=T)
           
         }

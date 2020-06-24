@@ -21,7 +21,7 @@ source("R/get_anchor_info.R")
 # parses all web files and picks out content we need.
 # writes to a text file
 siteurl <- "//net.nefsc.noaa.gov/www/ecosys/ecosystem-status-report/"
-get_website_content(siteurl,"index.html",filenameOut="ecosys-website.txt")
+#get_website_content(siteurl,"index.html",filenameOut="ecosys-website.txt")
 
 # converts the txt file to to an md file
 

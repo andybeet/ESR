@@ -40,4 +40,5 @@ check_valid_UTF8("ESR_2015.md")
 # use virtual studio code to convert to pdf
 
 # convert md to pdf. This doesn't work
-#rmarkdown::pandoc_convert(here::here("ecosys-website.md"),output="ESR_2014.pdf")
+rmarkdown::pandoc_convert(input=here::here("ESR_2015.md"),output="testmd.pdf",options="--pdf-engine=xelatex")
+#rmarkdown::pandoc_convert(input=here::here("ESR_2015.md"),output="ESR_2014.pdf",options="--pdf-engine=xelatex pdf")

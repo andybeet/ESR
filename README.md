@@ -1,15 +1,7 @@
 # ESR
 
-
-
-
-
-
-
-
-
-
-
+Code to parse the old Ecosys website. 
+Creates a markdown and a pdf document (via word)
 
 
 #### Legal disclaimer

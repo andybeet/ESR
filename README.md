@@ -1,6 +1,6 @@
 # ESR
 
-![gitleaks](https://github.com/NOAA-EDAB/LeMANS/workflows/gitleaks/badge.svg)
+![gitleaks](https://github.com/andybeet/ESR/workflows/gitleaks/badge.svg)
 
 
 Code to parse the old Ecosys website. 

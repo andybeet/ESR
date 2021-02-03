@@ -1,7 +1,18 @@
 # ESR
 
+![gitleaks](https://github.com/NOAA-EDAB/LeMANS/workflows/gitleaks/badge.svg)
+
+
 Code to parse the old Ecosys website. 
 Creates a markdown and a pdf document (via word)
+
+
+## Contact
+
+| [andybeet](https://github.com/andybeet)        
+| ----------------------------------------------------------------------------------------------- 
+| [![](https://avatars1.githubusercontent.com/u/22455149?s=100&v=4)](https://github.com/andybeet) | 
+
 
 
 #### Legal disclaimer
